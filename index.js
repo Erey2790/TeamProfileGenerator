@@ -33,9 +33,16 @@ const createManager = () => {
             },
             {
                 type: 'input',
-                name: 'officeNumber',
+                name: 'office',
                 message: 'Please enter the managers office number'
             }
         ])
+        .then(managerInput => {
+            const { name, id, email, office } = managerInput;
+            const manager = new Manager (name, id, email, office);
+
+            teamArray.push(manager);
+            console.log(manager)
+        })
 }
 createManager()
