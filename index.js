@@ -8,7 +8,7 @@ const Intern = require('./lib/Intern');
 const Employee = require('./lib/Employee');
 
 const generatePage = require('./src/page-template');
-const writeFile = require('');
+// const writeFile = require('');
 
 const teamArray = [];
 
@@ -38,3 +38,4 @@ const createManager = () => {
             }
         ])
 }
+createManager()
