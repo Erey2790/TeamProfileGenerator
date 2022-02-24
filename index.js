@@ -116,8 +116,8 @@ const createEmployee = () => {
 };
 
 // generate html page using fs
-const writeFile = data => {
-    fs.writeFile('./dist/index.html', data, err => {
+const writeFile = teamArray => {
+    fs.writeFile('./dist/index.html', teamArray, err => {
         if (err) {
             console.log(err);
             return;
