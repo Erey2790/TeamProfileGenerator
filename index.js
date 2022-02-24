@@ -114,8 +114,28 @@ const createEmployee = () => {
             }
         })
 };
+
+// generate html page using fs
+const writeFile = data => {
+    fs.writeFile('./dist/index.html', data, err => {
+        if (err) {
+            console.log(err);
+            return;
+        } else {
+            console.log("Your team profile is now ready to be viewed! Please navigate to index.html")
+        }
+    })
+}
+
+
 createManager()
     .then(createEmployee)
     .then(teamArray => {
         return generatePage(teamArray)
     })
+    .then(pageHtml => {
+        return writeFile(pageHtml)
+    })
+    .catch(err => {
+        console.log(err);
+    });
