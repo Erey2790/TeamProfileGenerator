@@ -44,5 +44,78 @@ const createManager = () => {
             teamArray.push(manager);
             console.log(manager)
         })
-}
+};
+
+const createEmployee = () => {
+    console.log(`
+    == ADD EMPLOYEES HERE ==`)
+    return inquirer
+        .prompt([
+            {
+                type: 'list',
+                name: 'role',
+                messsage: 'Please choose your employees role',
+                choices: ['Engineer', 'Intern']
+            },
+            {
+                type: 'input',
+                name: 'name',
+                message: 'What is the name of the employee?'
+            },
+            {
+                type: 'input',
+                name: 'id',
+                message: 'Please enter the employees ID'
+            },
+            {
+                type: 'input',
+                name: 'email',
+                message: 'Please enter employees email'
+            },
+            {
+                type: 'input',
+                name: 'github',
+                message: 'Please enter employees github username',
+                when: (input) => input.role === "Engineer"
+            },
+            {
+                type: 'input',
+                name: 'school',
+                message: "Enter the interns school",
+                when: (input) => input.role === "Intern",
+            },
+            {
+                type: 'confirm',
+                name: 'confirmEmployee',
+                message: 'Would you like to add more Employee?',
+                default: false
+            }
+        ])
+        .then(employeeInfo => {
+            // info for employee
+            const { name, id, email, role, github, school, confirmEmployee } = employeeInfo;
+            let employee;
+
+            if (role === "Engineer") {
+                employee = new Engineer (name, id, email, github);
+
+                console.log(employee)
+            } else if (role === "Intern") {
+                employee = new Intern (name, id, email, school);
+
+                console.log(employee);
+            }
+
+            teamArray.push(employee);
+            if (confirmEmployee) {
+                return createEmployee(teamArray);
+            } else {
+                return teamArray;
+            }
+        })
+};
 createManager()
+    .then(createEmployee)
+    .then(teamArray => {
+        return generatePage(teamArray)
+    })
