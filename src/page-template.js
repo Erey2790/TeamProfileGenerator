@@ -64,7 +64,7 @@ index.push(team.filter(intern => intern.getRole() === "Intern")
 .map(intern => createIntern(intern))
 .join("")
 );
-return index.join("")
+return index.join('')
  }
 
 
