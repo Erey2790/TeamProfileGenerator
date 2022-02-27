@@ -53,19 +53,19 @@ const createTeam = team => {
         `;
     };
 const index = [];
-index.push(team.filter(employee.getRole() === "Manager")
+index.push(team.filter(manager.getRole() === "Manager")
 .map(manager => createManager(manager)));
 
-index.push(team.filter(employee.getRole() === "Engineer")
+index.push(team.filter(engineer.getRole() === "Engineer")
 .map(engineer => createEngineer(engineer))
 .join(""));
 
-index.push(team.filter(employee => employee.getRole() === "Intern")
+index.push(team.filter(intern => intern.getRole() === "Intern")
 .map(intern => createIntern(intern))
 .join("")
 );
 return index.join("")
-}
+ }
 
 
 module.exports = generatePage => {
@@ -85,7 +85,7 @@ module.exports = generatePage => {
             </header>
             
            
-            ${createTeam}
+            ${createTeam(generatePage)}
         </body>
         </html>    
         `
