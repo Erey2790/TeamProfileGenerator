@@ -70,12 +70,12 @@ const createEmployee = () => {
             {
                 type: 'input',
                 name: 'email',
-                message: 'Please enter employees email'
+                message: 'Enter employees email'
             },
             {
                 type: 'input',
                 name: 'github',
-                message: 'Please enter employees github username',
+                message: 'Enter employees github username',
                 when: (input) => input.role === "Engineer"
             },
             {
